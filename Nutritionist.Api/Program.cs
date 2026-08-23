@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Nutritionist.Api.Configuration;
 using Nutritionist.Api.Data;
 using Nutritionist.Api.Services;
+using Nutritionist.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,5 +70,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+if (app.Environment.IsDevelopment())
+{
+    await DatabaseInitializer.InitializeAsync(app.Services);
+}
 app.Run();
