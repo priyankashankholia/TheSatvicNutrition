@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+}
+
+.app {
+  min-height: 100vh;
+  background: #f5f7f4;
+  color: #243028;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: #ffffff;
+  padding: 24px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e9e5;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  margin: 6px 0 0;
+  color: #718076;
+}
+
+.api-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.api-status span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #35a853;
+}
+
+.dashboard {
+  width: min(1000px, 92%);
+  margin: 40px auto;
+}
+
+.hero {
+  background: linear-gradient(135deg, #234d36, #3f7653);
+  color: white;
+  padding: 42px;
+  border-radius: 18px;
+  margin-bottom: 24px;
+}
+
+.hero h2 {
+  margin: 0 0 10px;
+  font-size: 32px;
+}
+
+.hero p {
+  margin: 0;
+  opacity: .9;
+}
+
+.card {
+  background: white;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  padding: 13px;
+  border: 1px solid #d7ded8;
+  border-radius: 9px;
+  font-size: 15px;
+}
+
+.primary {
+  margin-top: 25px;
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 9px;
+  background: #2f6846;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.results {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.result-card,
+.recommendation {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+}
+
+.result-card span {
+  display: block;
+  color: #718076;
+  font-size: 14px;
+}
+
+.result-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+}
+
+.recommendation {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 650px) {
+  .header {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .dashboard {
+    margin: 25px auto;
+  }
+
+  .hero {
+    padding: 28px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+  .form-grid,
+  .results {
+    grid-template-columns: 1fr;
+  }
+}

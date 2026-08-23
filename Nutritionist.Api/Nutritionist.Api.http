@@ -1,0 +1,6 @@
+@Nutritionist.Api_HostAddress = http://localhost:5150
+
+GET {{Nutritionist.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

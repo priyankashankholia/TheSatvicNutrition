@@ -1,0 +1,102 @@
+<div class="app">
+
+  <header class="header">
+    <div>
+      <h1>Satvic Nutrition</h1>
+      <p>Personalized nutrition management</p>
+    </div>
+
+    <div class="api-status">
+      <span></span>
+      {{ apiStatus }}
+    </div>
+  </header>
+
+  <main class="dashboard">
+
+    <section class="hero">
+      <div>
+        <h2>Nutrition Assessment</h2>
+        <p>Enter your details to generate a personalized nutrition recommendation.</p>
+      </div>
+    </section>
+
+    <section class="card">
+
+      <h3>Personal Details</h3>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Name</label>
+          <input
+            [(ngModel)]="name"
+            placeholder="Enter your name">
+        </div>
+
+        <div class="field">
+          <label>Age</label>
+          <input
+            type="number"
+            [(ngModel)]="age"
+            placeholder="Age">
+        </div>
+
+        <div class="field">
+          <label>Weight (kg)</label>
+          <input
+            type="number"
+            [(ngModel)]="weight"
+            placeholder="Weight">
+        </div>
+
+        <div class="field">
+          <label>Height (cm)</label>
+          <input
+            type="number"
+            [(ngModel)]="height"
+            placeholder="Height">
+        </div>
+
+        <div class="field">
+          <label>Primary Goal</label>
+          <select [(ngModel)]="goal">
+            <option>Weight Loss</option>
+            <option>Muscle Gain</option>
+            <option>Weight Maintenance</option>
+            <option>Healthy Lifestyle</option>
+          </select>
+        </div>
+
+      </div>
+
+      <button class="primary" (click)="calculate()">
+        Generate Assessment
+      </button>
+
+    </section>
+
+    @if (bmi !== null) {
+      <section class="results">
+
+        <div class="result-card">
+          <span>BMI</span>
+          <strong>{{ bmi }}</strong>
+        </div>
+
+        <div class="result-card">
+          <span>Goal</span>
+          <strong>{{ goal }}</strong>
+        </div>
+
+        <div class="recommendation">
+          <h3>Recommendation</h3>
+          <p>{{ recommendation }}</p>
+        </div>
+
+      </section>
+    }
+
+  </main>
+
+</div>
