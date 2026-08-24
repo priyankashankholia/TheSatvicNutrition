@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nutritionist.Api.DTOs;
-
+using Nutritionist.Api.Data;
 namespace Nutritionist.Api.Controllers;
 
 [ApiController]
