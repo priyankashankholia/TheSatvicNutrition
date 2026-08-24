@@ -1,13 +1,12 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Nutritionist.Api.DTOs;
 using Nutritionist.Api.Data;
+using Nutritionist.Api.DTOs;
+
 namespace Nutritionist.Api.Controllers;
 
 [ApiController]
 [Route("api/nutritionist/dashboard")]
-[Authorize(Roles = "Nutritionist")]
 public class NutritionistDashboardController : ControllerBase
 {
     private readonly NutritionDbContext _context;
@@ -22,38 +21,28 @@ public class NutritionistDashboardController : ControllerBase
     {
         var today = DateTime.UtcNow.Date;
 
-        var totalClients = await _context.Users
-            .CountAsync(x => x.Role == "Client");
+        var totalClients = await _context.ClientProfiles
+            .CountAsync();
 
-        var todayAppointments = await _context.Appointments
-            .CountAsync(x => x.AppointmentDate.Date == today);
+        var upcomingAppointments = await _context.Appointments
+            .CountAsync(x => x.StartTimeUtc >= DateTime.UtcNow);
 
         var pendingAssessments = await _context.Assessments
-            .CountAsync(x => x.Status == "Pending");
+            .CountAsync();
 
         var unreadMessages = await _context.Messages
-            .CountAsync(x => !x.IsRead);
+            .CountAsync();
 
-        var appointments = await _context.Appointments
-            .Where(x => x.AppointmentDate.Date == today)
-            .OrderBy(x => x.AppointmentDate)
-            .Select(x => new NutritionistAppointmentResponse
-            {
-                Id = x.Id,
-                ClientName = x.Client.Name,
-                Date = x.AppointmentDate,
-                Time = x.AppointmentDate.ToString("hh:mm tt"),
-                Status = x.Status
-            })
-            .ToListAsync();
+        var activeClients = await _context.ClientProfiles
+            .CountAsync();
 
         var response = new NutritionistDashboardResponse
         {
             TotalClients = totalClients,
-            TodayAppointments = todayAppointments,
+            UpcomingAppointments = upcomingAppointments,
             PendingAssessments = pendingAssessments,
             UnreadMessages = unreadMessages,
-            Appointments = appointments
+            ActiveClients = activeClients
         };
 
         return Ok(response);
